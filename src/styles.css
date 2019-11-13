@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css";
+
+.navbar-inverse {
+    background-color: #FFA500;
+    border-color: #FFA500;
+}
+.navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-brand {
+    color: #fff;
+}
+img {
+    width: 39%;
+    margin-left: 20;
+    position: relative;
+    left: 59px;
+}
+
+.ui-panel .ui-panel-titlebar{
+    background-color: #FFA500 !important;
+    border: 1px solid #FFA500 !important;
+}
+.ui-panel .ui-panel-content{
+    border: 1px solid #FFA500 !important; 
+}
+.ui-panel .ui-panel-titlebar .ui-panel-title{
+    color:#fff;
+}
+.user-img img{
+width: 100%;
+}
+.user-img {
+    width: 70%;
+    margin-bottom: 10%;
+}
+.mar-top10
+{
+    margin-top: 5%;
+}
+
+/*login page */
+.mar-auto{  
+    margin: auto;   
+    float: none;
+}
+.mar-top20{
+    margin-top: 10%;
+}
+@media only screen and (max-width: 670px) {   
+    #myLinks{
+        display: none;
+    }
+    .icon{
+        display: block;
+        background: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #888;
+    text-decoration: none;
+    color: #000;
+    text-align: center;
+    }
+    .ui-dialog.ui-confirmdialog{
+        width:100% !important;
+    }
+}

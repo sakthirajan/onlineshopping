@@ -1,0 +1,48 @@
+<app-nav-menu></app-nav-menu>
+<div class="col-md-6 mar-auto mar-top20">
+    <div class="alert alert-danger" *ngIf="error">
+        <strong>Error!</strong> User Email or Password invaild
+    </div>
+    <form [formGroup]="userform">
+        <p-panel header="Login">
+            <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        User Email *:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText type="text" formControlName="userEmail" placeholder="Email id Required" />
+                    </div>
+                    <div class="ui-grid-col-4">
+                        <p-message severity="error" text="Enter the valid  email id"
+                            *ngIf="!userform.controls['userEmail'].valid&&userform.controls['userEmail'].dirty">
+                        </p-message>
+                    </div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Password *:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText type="password" formControlName="password"
+                            placeholder="Password Required - Min(6)" />
+                    </div>
+                    <div class="ui-grid-col-4">
+                        <p-message severity="error"
+                            [text]="userform.controls['password'].errors['required'] ? 'Password is required' : userform.controls['password'].errors['minlength'] ? 'Must be longer than 6 characters' : ''"
+                            *ngIf="!userform.controls['password'].valid&&userform.controls['password'].dirty">
+                        </p-message>
+                    </div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2"></div>
+                    <div class="ui-grid-col-6">
+                        <button pButton type="submit" label="Submit" [disabled]="!userform.valid"
+                            (click)="onSubmit()"></button>
+                    </div>
+                    <div class="ui-grid-col-4"></div>
+                </div>
+            </div>
+        </p-panel>
+    </form>
+</div>

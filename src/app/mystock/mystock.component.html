@@ -1,0 +1,22 @@
+<app-nav-menu></app-nav-menu>
+<div class="col-md-8 mar-auto col-sm-12">
+    <p-table [columns]="cols" [value]="mystock" [paginator]="true" [rows]="10" sortMode="multiple">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td> {{rowData.purchasedStockId}}</td>
+                <td> {{rowData.stockName}}</td>
+                <td> {{rowData.stockPrice}}</td>
+                <td> {{rowData.stockQuantity}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -1,0 +1,79 @@
+<app-nav-menu></app-nav-menu>
+<div class="mar-top10">
+    <div class="col-md-3">
+        <div class="user-img">
+            <img src="https://image.flaticon.com/icons/svg/236/236832.svg" alt="user" />
+            <h2 class="name-user">{{userName}}</h2>
+        </div>
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <p-table [columns]="cols" [value]="stockDetails" [paginator]="true" [rows]="10" sortMode="multiple">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                        {{col.header}}
+                        <p-sortIcon [field]="col.field"></p-sortIcon>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                    <td>{{rowData.stockName}}</td>
+                    <td>{{rowData.stockPrice}}</td>
+                    <td>{{rowData.stockQuantity}}</td>
+                    <td><button pButton type="button" label="Buy" (click)="onRowUpdate(rowData)"></button></td>
+
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+<p-dialog header="Stock Details" [(visible)]="update" [modal]="true" [style]="{width: '500px', minWidth: '200px'}"
+    [responsive]="true" [minY]="70" [maximizable]="true" [baseZIndex]="10000">
+    <div class="ui-g ui-fluid" *ngIf="stockinfo">
+        <form [formGroup]="updateForm">
+            <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-5">Stock Name : </div>
+                    <div class="ui-grid-col-5">
+                        <input pInputText type="text" name="stockName" value="1" min="1" id="stockName"
+                            [(ngModel)]=stockinfo.stockName placeholder="" readonly formControlName="stockName" />
+                    </div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-5"> Quantity : </div>
+                    <div class="ui-grid-col-5">
+                        <input pInputText type="number" name="Quantity" value="1" min="1" id="Quantity"
+                            [(ngModel)]=Quantity placeholder="" formControlName="stockQuantity" />
+                    </div>
+                </div>
+                <div class=" ui-grid-row">
+                    <div class="ui-grid-col-5"> Old Price : </div>
+                    <div class="ui-grid-col-5">
+                        <input pInputText type="text" name="stockPrice" id="stockPrice" [(ngModel)]=stockinfo.stockPrice
+                            placeholder="" readonly ngModel formControlName="oldstockPrice" />
+                    </div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-5"> Current Price : </div>
+                    <div class="ui-grid-col-5">
+                        <input pInputText type="number" name="cuprice" id="cuprice" formControlName="stockPrice"
+                            [(ngModel)]="stockinfo.cuprice" placeholder="" ngModel />
+                    </div>
+                </div>
+                <h3>Total Price: <strong>{{Quantity * stockinfo.cuprice | currency:'INR':"symbol-narrow"}}</strong>
+                </h3>
+            </div>
+        </form>
+    </div>
+    <div class="alert alert-success">
+        <strong>10%</strong> of Brokerage charge will be added
+    </div>
+    <p-footer>
+        <button type=" button" pButton icon="pi pi-check" label="Buy" (click)="onBuy(updateForm.value)"></button>
+    </p-footer>
+</p-dialog>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" [style]="{width: '500px', minWidth: '200px'}"
+    [baseZIndex]="20000"></p-confirmDialog>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>

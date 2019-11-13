@@ -1,0 +1,30 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"
+                (click)="navMenu()">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand"><img src="../../assets/images/logo.hd.png" alt="logo"></a>
+        </div>
+        <div id="myLinks">
+            <div *ngIf="showMenu else login">
+                <ul class="nav navbar-nav">
+                    <li routerLinkActive="active"><a routerLink="/stock">All Stocks</a></li>
+                    <li routerLinkActive="active"><a routerLink="/mystock">My Stock</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a routerLink="/login" (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span>
+                            logout</a></li>
+                </ul>
+            </div>
+            <ng-template #login>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a routerLink="/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </ng-template>
+        </div>
+    </div>
+</nav>

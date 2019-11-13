@@ -1,0 +1,13 @@
+{
+  "stock": [
+    {
+      "id": 1,
+      "stockName": "test",
+      "stockPrice": 400,
+      "stockQuantity": "3"
+    }
+  ],
+  "login": [
+    {}
+  ]
+}
